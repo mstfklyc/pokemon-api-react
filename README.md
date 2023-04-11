@@ -2,5 +2,5 @@
 
 <h3>Build with:</h3>
 
-» https://pokeapi.co/ API 
+» https://pokeapi.co/ API <br>
 » React JS , Context , React router 6 , React icons
