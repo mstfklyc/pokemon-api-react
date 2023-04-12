@@ -1,14 +1,26 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { useContext } from "react";
 import { useParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import PokemonContext from "../context/PokeContext";
+import { useHistory } from "react-router-dom";
 function SinglePokemonPage() {
   const { pokemon, getPokemon } = useContext(PokemonContext);
   const params = useParams();
   useEffect(() => {
     getPokemon(params.name);
   }, []);
+  const positionRef = useRef(null);
+  const navigate = useNavigate();
+  const handleGoBack = () => {
+    if (positionRef.current) {
+      window.scrollto(0, positionRef.current);
+    } else {
+      navigate(-1);
+    }
+  };
 
   return (
     <div className="single-pokemon">
@@ -34,9 +46,10 @@ function SinglePokemonPage() {
           Special Defense : {pokemon?.stats ? pokemon.stats[4].base_stat : ""}
         </h4>
         <h4>Speed : {pokemon?.stats ? pokemon.stats[5].base_stat : ""}</h4>
-        <Link to="/" className="cancel-btn-link">
-          <button className="cancel-btn">Back to search Page</button>
-        </Link>
+        {/* <Link to="/" className="cancel-btn-link"> */}
+        <button onClick={handleGoBack} className="cancel-btn">
+          Back to search Page
+        </button>
       </div>
     </div>
   );

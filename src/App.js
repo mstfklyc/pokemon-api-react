@@ -20,6 +20,7 @@ function App() {
       {showNavbar && <Navbar setSearchText={setSearchText} />}{" "}
       <Routes>
         <Route
+          onClick={handleClick}
           exact
           path="/"
           element={<PokemonList searchText={searchText} />}

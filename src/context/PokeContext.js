@@ -90,7 +90,9 @@ export const PokemonProvider = ({ children }) => {
     });
     setLoading();
   };
-  // Load More
+  useEffect(() => {
+    getPokemons();
+  }, []);
 
   return (
     <PokemonContext.Provider

@@ -6,18 +6,18 @@ import spinnergif from "./assets/simple_pokeball.gif";
 import colors from "../colors";
 
 function PokemonList({ searchText }) {
-  const { pokemons, getPokemons, loading, setLoading, loadMorePokemons } =
-    useContext(PokemonContext);
+  const {
+    pokemons,
+    getPokemons,
+    loading,
+    pokemon,
+    setLoading,
+    loadMorePokemons,
+  } = useContext(PokemonContext);
 
   const filteredPokemons = pokemons.results.filter((pokemon) =>
     pokemon.name.includes(searchText?.toLowerCase())
   );
-
-  useEffect(() => {
-    setTimeout(() => {
-      getPokemons();
-    }, 1000);
-  }, []);
 
   function handleClick() {
     window.scrollTo({
