@@ -6,7 +6,8 @@ import Footer from "./pages/Footer";
 import SinglePokemonPage from "./Components/SinglePokemonPage";
 function App({ hideNavBar }) {
   const [searchText, setSearchText] = useState("");
-  const [showNavbar, setShowNavbar] = useState(false);
+  const [showNavbar, setShowNavbar] = useState(true);
+  console.log(showNavbar);
 
   function lowerCase() {
     searchText.toLowerCase();
@@ -15,7 +16,7 @@ function App({ hideNavBar }) {
 
   return (
     <div className="App">
-      {showNavbar && <Navbar />}{" "}
+      {showNavbar && <Navbar />}
       <Routes>
         <Route
           exact
@@ -37,7 +38,7 @@ function App({ hideNavBar }) {
           path="/pokemon/:name"
           showNavbar={showNavbar}
           setShowNavbar={setShowNavbar}
-          element={<SinglePokemonPage />}
+          element={<SinglePokemonPage setShowNavbar={setShowNavbar} />}
         />
       </Routes>
       <Footer />

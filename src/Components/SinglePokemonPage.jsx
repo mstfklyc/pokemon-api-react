@@ -1,12 +1,9 @@
 import { useEffect, useRef } from "react";
 import { useContext } from "react";
 import { useParams } from "react-router-dom";
-import { useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
 import PokemonContext from "../context/PokeContext";
-import { useHistory } from "react-router-dom";
-function SinglePokemonPage() {
+function SinglePokemonPage({ setShowNavbar }) {
   const { pokemon, getPokemon } = useContext(PokemonContext);
   const params = useParams();
   useEffect(() => {
@@ -15,6 +12,8 @@ function SinglePokemonPage() {
   const positionRef = useRef(null);
   const navigate = useNavigate();
   const handleGoBack = () => {
+    setShowNavbar(true);
+
     if (positionRef.current) {
       window.scrollto(0, positionRef.current);
     } else {

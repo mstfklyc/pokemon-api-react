@@ -18,11 +18,9 @@ function PokemonList({ searchText, setShowNavbar }) {
   const filteredPokemons = pokemons.results.filter((pokemon) =>
     pokemon.name.includes(searchText?.toLowerCase())
   );
-  function hideSearchBar() {
+
+  function handleNavBar() {
     setShowNavbar(false);
-  }
-  function navBarSetTrue() {
-    setShowNavbar(true);
   }
 
   function handleClick() {
@@ -37,7 +35,7 @@ function PokemonList({ searchText, setShowNavbar }) {
         <img src={spinnergif}></img>
       ) : (
         // Değilse asıl içeriği göster.
-        <div className="poke-container" onClick={hideSearchBar}>
+        <div className="poke-container" onClick={handleNavBar}>
           {filteredPokemons.map((item, idx) => {
             return <PokeItem item={item} key={idx} colors={colors} />;
           })}
@@ -46,10 +44,7 @@ function PokemonList({ searchText, setShowNavbar }) {
       <button className="btn btn-load" onClick={loadMorePokemons}>
         Load More
       </button>
-      <button
-        className="btn-top"
-        onClick={(() => handleClick, navBarSetTrue())}
-      >
+      <button className="btn-top" onClick={handleClick}>
         <AiOutlineToTop />
       </button>
     </>
