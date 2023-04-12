@@ -5,7 +5,7 @@ import { AiOutlineToTop } from "react-icons/ai";
 import spinnergif from "./assets/simple_pokeball.gif";
 import colors from "../colors";
 
-function PokemonList({ searchText }) {
+function PokemonList({ searchText, setShowNavbar }) {
   const {
     pokemons,
     getPokemons,
@@ -18,6 +18,12 @@ function PokemonList({ searchText }) {
   const filteredPokemons = pokemons.results.filter((pokemon) =>
     pokemon.name.includes(searchText?.toLowerCase())
   );
+  function hideSearchBar() {
+    setShowNavbar(false);
+  }
+  function navBarSetTrue() {
+    setShowNavbar(true);
+  }
 
   function handleClick() {
     window.scrollTo({
@@ -31,7 +37,7 @@ function PokemonList({ searchText }) {
         <img src={spinnergif}></img>
       ) : (
         // Değilse asıl içeriği göster.
-        <div className="poke-container">
+        <div className="poke-container" onClick={hideSearchBar}>
           {filteredPokemons.map((item, idx) => {
             return <PokeItem item={item} key={idx} colors={colors} />;
           })}
@@ -40,7 +46,10 @@ function PokemonList({ searchText }) {
       <button className="btn btn-load" onClick={loadMorePokemons}>
         Load More
       </button>
-      <button className="btn-top" onClick={handleClick}>
+      <button
+        className="btn-top"
+        onClick={(() => handleClick, navBarSetTrue())}
+      >
         <AiOutlineToTop />
       </button>
     </>

@@ -4,26 +4,28 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./pages/Navbar";
 import Footer from "./pages/Footer";
 import SinglePokemonPage from "./Components/SinglePokemonPage";
-function App() {
+function App({ hideNavBar }) {
   const [searchText, setSearchText] = useState("");
-  const [showNavbar, setShowNavbar] = useState(true);
+  const [showNavbar, setShowNavbar] = useState(false);
 
   function lowerCase() {
     searchText.toLowerCase();
   }
   lowerCase();
-  const handleClick = () => {
-    setShowNavbar(false);
-  };
+
   return (
     <div className="App">
-      {showNavbar && <Navbar setSearchText={setSearchText} />}{" "}
+      {showNavbar && <Navbar />}{" "}
       <Routes>
         <Route
-          onClick={handleClick}
           exact
           path="/"
-          element={<PokemonList searchText={searchText} />}
+          element={
+            <PokemonList
+              setShowNavbar={setShowNavbar}
+              searchText={searchText}
+            />
+          }
         />
         <Route
           path="/navbar"
