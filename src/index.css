@@ -32,33 +32,15 @@ code {
   background-size: cover;
   display: block;
   flex-direction: column;
-  background-color: #fff;
   align-items: center;
   position: relative;
-
   text-align: center;
   min-height: 100vh;
   font-family: "Mulish", sans-serif;
-}
-.search-input {
-  align-items: center;
-  text-align: center;
-  font: inherit;
-  top: 50%;
-}
-.search-input h1 {
-  font-size: 1.2rem;
-}
-.search-input input {
-  top: 50%;
-  margin-top: 10px;
-  padding: 7px 16px;
-  text-align: left;
-  text-transform: capitalize;
-}
-
-.search-input input:focus {
-  outline: none;
+  display: flex;
+  background-color: #181b1d;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .poke-container {
@@ -72,7 +54,54 @@ code {
 
   justify-content: center;
 }
+.poke-box {
+  text-transform: capitalize;
+  width: 250px;
+  background-color: #fff;
+  box-shadow: 3px 3px 7px;
+  border-radius: 15px;
+  padding: 40px;
+  margin: 20px;
+  display: flex;
+  min-height: 400px;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.single-pokemon {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  color: white;
+  width: 100%;
+  height: 100dvh;
+  background-color: #262548;
+}
+.poke-header {
+  padding: 20px;
+}
+.poke-header h1 {
+  color: red;
+}
+.poke-img {
+  width: 100px;
+}
 
+.poke-header h1 {
+  color: #fff;
+}
+.poke-header {
+  text-transform: capitalize;
+}
+.poke-box:hover {
+  transform: scale(1.1);
+  transition: all ease-out 0.2s;
+}
+.pokelist-stats h3 {
+  letter-spacing: 0.1rem;
+}
+.poke-img {
+  width: 200px;
+}
 .nav-logo {
   width: 50px;
   margin-right: auto;
@@ -94,82 +123,25 @@ code {
   text-align: center;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.09);
 }
-.spinner-gif {
-  background-color: red;
-  width: 50%;
-  height: 50%;
-}
-
-.poke-box {
-  text-transform: capitalize;
-  width: 250px;
-  background-color: #fff;
-  box-shadow: 3px 3px 7px;
-  border-radius: 15px;
-  padding: 40px;
-  margin: 20px;
-  display: flex;
-  min-height: 400px;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.poke-header {
-  padding: 20px;
-}
-.poke-header h1 {
-  color: red;
-}
-
-.btn {
-  padding: 10px 20px;
-  margin: 5px;
-  outline: 0;
-  border: none;
-  background-color: #fff;
-  color: black;
-  border-radius: 5px;
-  cursor: pointer;
-  width: 300px;
-  height: 50px;
-  margin: 50px 0px;
-}
-.btn-top {
-  position: absolute;
-  right: 50px;
-  bottom: 200px;
-  padding: 10px 15px;
-  border-radius: 20px;
-  font-size: 2rem;
-}
-
-.App {
-  display: flex;
-
-  background-color: #181b1d;
-  flex-direction: column;
-  justify-content: space-between;
-}
 
 .footer {
+  letter-spacing: 0.3rem;
+}
+.footer {
+  display: flex;
   padding: 1.2rem;
   background-color: #fff;
   width: 100%;
   height: 100px;
+  align-items: center;
+  justify-content: center;
 }
-.poke-header {
-  text-transform: capitalize;
+.spinner-gif {
+  background-color: red;
+  width: 100%;
+  height: 50%;
 }
 
-.single-pokemon {
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  color: white;
-  width: 100%;
-  height: 100dvh;
-  background-color: #262548;
-}
 .cancel-btn {
   padding: 20px 30px;
   border-radius: 15px;
@@ -194,27 +166,52 @@ code {
 .stats h4 {
   margin: 10px;
 }
-.pokelist-stats h3 {
-  letter-spacing: 0.1rem;
-}
-.poke-img {
-  width: 100px;
-}
 
-.poke-header h1 {
-  color: #fff;
-}
-
-.poke-box:hover {
-  transform: scale(1.1);
-  transition: all ease-out 0.2s;
-}
 .custom-link {
   color: inherit;
   text-decoration: none;
 }
-.poke-img {
-  width: 200px;
+
+.search-input {
+  align-items: center;
+  text-align: center;
+  font: inherit;
+  top: 50%;
+}
+.search-input h1 {
+  font-size: 1.2rem;
+}
+.search-input input {
+  top: 50%;
+  margin-top: 10px;
+  padding: 7px 16px;
+  text-align: left;
+  text-transform: capitalize;
+}
+
+.search-input input:focus {
+  outline: none;
+}
+.btn {
+  padding: 10px 20px;
+  margin: 5px;
+  outline: 0;
+  border: none;
+  background-color: #fff;
+  color: black;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 300px;
+  height: 50px;
+  margin: 50px 0px;
+}
+.btn-top {
+  position: absolute;
+  right: 50px;
+  bottom: 200px;
+  padding: 10px 15px;
+  border-radius: 20px;
+  font-size: 2rem;
 }
 @media only screen and (max-width: 800px) {
   .single-pokemon {

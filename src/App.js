@@ -7,7 +7,6 @@ import SinglePokemonPage from "./Components/SinglePokemonPage";
 function App({ hideNavBar }) {
   const [searchText, setSearchText] = useState("");
   const [showNavbar, setShowNavbar] = useState(true);
-  console.log(showNavbar);
 
   function lowerCase() {
     searchText.toLowerCase();
@@ -16,7 +15,7 @@ function App({ hideNavBar }) {
 
   return (
     <div className="App">
-      {showNavbar && <Navbar />}
+      {showNavbar && <Navbar setSearchText={setSearchText} />}
       <Routes>
         <Route
           exact
@@ -28,10 +27,7 @@ function App({ hideNavBar }) {
             />
           }
         />
-        <Route
-          path="/navbar"
-          element={<Navbar setSearchText={setSearchText} />}
-        />
+        <Route path="/navbar" element={<Navbar />} />
 
         <Route path="/footer" element={<Footer />} />
         <Route

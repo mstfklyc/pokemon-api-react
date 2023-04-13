@@ -2,18 +2,12 @@ import PokemonContext from "../context/PokeContext";
 import { useContext, useEffect } from "react";
 import PokeItem from "./PokeItem";
 import { AiOutlineToTop } from "react-icons/ai";
-import spinnergif from "./assets/simple_pokeball.gif";
+import spinnergif from "./assets/spinner.gif";
 import colors from "../colors";
-
+import Spinner from "./Spinner";
 function PokemonList({ searchText, setShowNavbar }) {
-  const {
-    pokemons,
-    getPokemons,
-    loading,
-    pokemon,
-    setLoading,
-    loadMorePokemons,
-  } = useContext(PokemonContext);
+  const { pokemons, loading, btnLoading, loadMorePokemons } =
+    useContext(PokemonContext);
 
   const filteredPokemons = pokemons.results.filter((pokemon) =>
     pokemon.name.includes(searchText?.toLowerCase())
@@ -32,9 +26,9 @@ function PokemonList({ searchText, setShowNavbar }) {
   return (
     <>
       {loading ? ( // Show spinner if loading is true
-        <img src={spinnergif}></img>
+        <Spinner />
       ) : (
-        // Değilse asıl içeriği göster.
+        // if loading not true , then show the real content
         <div className="poke-container" onClick={handleNavBar}>
           {filteredPokemons.map((item, idx) => {
             return <PokeItem item={item} key={idx} colors={colors} />;
@@ -42,7 +36,7 @@ function PokemonList({ searchText, setShowNavbar }) {
         </div>
       )}
       <button className="btn btn-load" onClick={loadMorePokemons}>
-        Load More
+        {btnLoading ? <img src={spinnergif} width="30px"></img> : "Load More"}
       </button>
       <button className="btn-top" onClick={handleClick}>
         <AiOutlineToTop />

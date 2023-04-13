@@ -17,6 +17,21 @@ const PokeReducer = (state, action) => {
         ...state,
         loading: false,
       };
+    case "SETBTN_LOADING":
+      return {
+        ...state,
+        btnLoading: true,
+      };
+    case "SETBTNFALSE_LOADING":
+      return {
+        ...state,
+        btnLoading: false,
+      };
+    case "CLEAR_POKEMON":
+      return {
+        ...state,
+        pokemon: [],
+      };
     case "LOAD_MORE_POKEMONS":
       return {
         ...state,

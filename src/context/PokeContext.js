@@ -10,10 +10,14 @@ export const PokemonProvider = ({ children }) => {
     pokemon: [],
     allPokemons: [],
     loading: true,
+    btnLoading: false,
   };
   const [state, dispatch] = useReducer(PokeReducer, initialState);
-  // Load More Pokemon
+
+  // Load More Pokemons
+
   const loadMorePokemons = async () => {
+    setBtnLoading();
     try {
       const response = await fetch(
         `https://pokeapi.co/api/v2/pokemon?limit=20&offset=${state.pokemons.results.length}`
@@ -30,9 +34,7 @@ export const PokemonProvider = ({ children }) => {
     } catch (error) {
       console.log(error);
     }
-  };
-  const setLoading = () => {
-    dispatch({ type: "SET_LOADING" });
+    setBtnLoadingFalse(false);
   };
 
   //Get Single Pokemon
@@ -63,6 +65,8 @@ export const PokemonProvider = ({ children }) => {
     setLoading(false);
   };
 
+  // Get pokemons and details and put one array
+
   const getPokemons = async () => {
     const response = await fetch("https://pokeapi.co/api/v2/pokemon/?limit=20");
     const data = await response.json();
@@ -90,10 +94,31 @@ export const PokemonProvider = ({ children }) => {
     });
     setLoading();
   };
+  // Get Pokemons when the page loads
   useEffect(() => {
     getPokemons();
   }, []);
 
+  // Functions
+  const setBtnLoading = () => {
+    dispatch({ type: "SETBTN_LOADING" });
+  };
+
+  const setLoading = () => {
+    dispatch({ type: "SET_LOADING" });
+  };
+
+  // Pokemon Clear State
+
+  const clearSinglePokemon = () => {
+    dispatch({ type: "CLEAR_POKEMON" });
+  };
+
+  const setBtnLoadingFalse = () => {
+    dispatch({
+      type: "SETBTNFALSE_LOADING",
+    });
+  };
   return (
     <PokemonContext.Provider
       value={{
@@ -105,7 +130,9 @@ export const PokemonProvider = ({ children }) => {
         getPokemons,
         setLoading,
         loadMorePokemons,
+        clearSinglePokemon,
         getPokemon,
+        btnLoading: state.btnLoading,
       }}
     >
       {children}

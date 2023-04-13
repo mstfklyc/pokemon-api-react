@@ -4,7 +4,8 @@ import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import PokemonContext from "../context/PokeContext";
 function SinglePokemonPage({ setShowNavbar }) {
-  const { pokemon, getPokemon } = useContext(PokemonContext);
+  const { pokemon, getPokemon, clearSinglePokemon } =
+    useContext(PokemonContext);
   const params = useParams();
   useEffect(() => {
     getPokemon(params.name);
@@ -13,12 +14,12 @@ function SinglePokemonPage({ setShowNavbar }) {
   const navigate = useNavigate();
   const handleGoBack = () => {
     setShowNavbar(true);
-
     if (positionRef.current) {
       window.scrollto(0, positionRef.current);
     } else {
       navigate(-1);
     }
+    clearSinglePokemon();
   };
 
   return (
@@ -45,7 +46,6 @@ function SinglePokemonPage({ setShowNavbar }) {
           Special Defense : {pokemon?.stats ? pokemon.stats[4].base_stat : ""}
         </h4>
         <h4>Speed : {pokemon?.stats ? pokemon.stats[5].base_stat : ""}</h4>
-        {/* <Link to="/" className="cancel-btn-link"> */}
         <button onClick={handleGoBack} className="cancel-btn">
           Back to search Page
         </button>

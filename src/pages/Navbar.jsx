@@ -1,8 +1,6 @@
 import React, { useContext } from "react";
-import { useState } from "react";
 import logo1 from "../../src/Components/assets/Daco_4249607.png";
 import { Link } from "react-router-dom";
-import PokemonContext from "../context/PokeContext";
 function Navbar({ setSearchText }) {
   return (
     <nav className="navbar-container">
