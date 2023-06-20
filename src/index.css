@@ -125,9 +125,6 @@ code {
 }
 
 .footer {
-  letter-spacing: 0.3rem;
-}
-.footer {
   display: flex;
   padding: 1.2rem;
   background-color: #fff;

@@ -71,11 +71,6 @@ export const PokemonProvider = ({ children }) => {
     const response = await fetch("https://pokeapi.co/api/v2/pokemon/?limit=20");
     const data = await response.json();
     const pokemonDetails = [];
-    for (const pokemon of data.results) {
-      const pokemonResponse = await fetch(pokemon.url);
-      const pokemonData = await pokemonResponse.json();
-      pokemonDetails.push(pokemonData);
-    }
     const goNextPage = await fetch(data.next);
     const nextData = await goNextPage.json();
     for (const next of nextData.results) {
