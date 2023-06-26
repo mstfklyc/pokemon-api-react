@@ -73,6 +73,11 @@ export const PokemonProvider = ({ children }) => {
     const pokemonDetails = [];
     const goNextPage = await fetch(data.next);
     const nextData = await goNextPage.json();
+    for (const pokemon of data.results) {
+      const pokemonResponse = await fetch(pokemon.url);
+      const pokemonData = await pokemonResponse.json();
+      pokemonDetails.push(pokemonData);
+    }
     for (const next of nextData.results) {
       const nextResponse = await fetch(next.url);
       const nextData = await nextResponse.json();
