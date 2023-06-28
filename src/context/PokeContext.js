@@ -27,7 +27,16 @@ export const PokemonProvider = ({ children }) => {
       for (let i = 0; i < data.results.length; i++) {
         const pokemonResponse = await fetch(data.results[i].url);
         const pokemonData = await pokemonResponse.json();
-        newData.push(pokemonData);
+        const { name, sprites, stats, types, weight } = pokemonData;
+        const pokemonDatas = {
+          name,
+          image: sprites.other.dream_world.front_default,
+          stats,
+          types: types.map((type) => type.type),
+          weight,
+        };
+        newData.push(pokemonDatas);
+        console.log(pokemonDatas);
       }
 
       dispatch({ type: "LOAD_MORE_POKEMONS", payload: { results: newData } });
@@ -42,13 +51,13 @@ export const PokemonProvider = ({ children }) => {
     setLoading(true);
     const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${name}`);
     const data = await response.json();
+
     dispatch({
       type: "GET_POKEMON",
       payload: data,
     });
     setLoading(false);
   };
-
   // Search Pokemons
   const searchPokemon = async (text) => {
     const params = new URLSearchParams({
@@ -73,15 +82,35 @@ export const PokemonProvider = ({ children }) => {
     const pokemonDetails = [];
     const goNextPage = await fetch(data.next);
     const nextData = await goNextPage.json();
+    const impData = [];
     for (const pokemon of data.results) {
       const pokemonResponse = await fetch(pokemon.url);
       const pokemonData = await pokemonResponse.json();
-      pokemonDetails.push(pokemonData);
+      const { name, sprites, stats, types, weight } = pokemonData;
+
+      const pokemonDatas = {
+        name,
+        image: sprites.other.dream_world.front_default,
+        stats,
+        types: types.map((type) => type.type),
+        weight,
+      };
+      console.log(pokemonDatas);
+      pokemonDetails.push(pokemonDatas);
     }
     for (const next of nextData.results) {
       const nextResponse = await fetch(next.url);
       const nextData = await nextResponse.json();
-      pokemonDetails.push(nextData);
+      const { name, sprites, stats, types, weight } = nextData;
+      const pokemonData = {
+        name,
+        image: sprites.other.dream_world.front_default,
+        stats,
+        types: types.map((type) => type.type),
+        weight,
+      };
+      pokemonDetails.push(pokemonData);
+      console.log(nextData);
     }
     const allPokemonData = {
       ...data,

@@ -10,7 +10,7 @@ function PokemonList({ searchText, setShowNavbar }) {
     useContext(PokemonContext);
 
   const filteredPokemons = pokemons.results.filter((pokemon) =>
-    pokemon.name.includes(searchText?.toLowerCase())
+    pokemon?.name?.includes(searchText?.toLowerCase())
   );
 
   function handleNavBar() {
