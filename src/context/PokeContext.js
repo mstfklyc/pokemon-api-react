@@ -1,4 +1,4 @@
-import { createContext, useEffect, useReducer, useState } from "react";
+import { createContext, useEffect, useReducer } from "react";
 import PokeReducer from "./PokeReducer";
 
 const PokemonContext = createContext();
@@ -80,9 +80,6 @@ export const PokemonProvider = ({ children }) => {
     const response = await fetch("https://pokeapi.co/api/v2/pokemon/?limit=20");
     const data = await response.json();
     const pokemonDetails = [];
-    const goNextPage = await fetch(data.next);
-    const nextData = await goNextPage.json();
-    const impData = [];
     for (const pokemon of data.results) {
       const pokemonResponse = await fetch(pokemon.url);
       const pokemonData = await pokemonResponse.json();
@@ -95,23 +92,9 @@ export const PokemonProvider = ({ children }) => {
         types: types.map((type) => type.type),
         weight,
       };
-      console.log(pokemonDatas);
       pokemonDetails.push(pokemonDatas);
     }
-    for (const next of nextData.results) {
-      const nextResponse = await fetch(next.url);
-      const nextData = await nextResponse.json();
-      const { name, sprites, stats, types, weight } = nextData;
-      const pokemonData = {
-        name,
-        image: sprites.other.dream_world.front_default,
-        stats,
-        types: types.map((type) => type.type),
-        weight,
-      };
-      pokemonDetails.push(pokemonData);
-      console.log(nextData);
-    }
+
     const allPokemonData = {
       ...data,
       results: pokemonDetails,
