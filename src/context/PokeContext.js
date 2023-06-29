@@ -36,7 +36,6 @@ export const PokemonProvider = ({ children }) => {
           weight,
         };
         newData.push(pokemonDatas);
-        console.log(pokemonDatas);
       }
 
       dispatch({ type: "LOAD_MORE_POKEMONS", payload: { results: newData } });

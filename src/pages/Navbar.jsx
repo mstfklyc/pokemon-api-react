@@ -9,12 +9,11 @@ function Navbar({ setSearchText }) {
           <img src={logo1} className="nav-logo"></img>
         </Link>
       </header>
-      <div className="search-input">
-        <h1>Search Pokemon</h1>
+      <div className="input-effect">
         <input
-          className="input"
+          className="search-input"
           type="text"
-          placeholder="Pokemon Name"
+          placeholder="Search Pokemon"
           onChange={(e) => setSearchText(e.target.value)}
         />
       </div>

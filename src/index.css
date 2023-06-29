@@ -154,6 +154,19 @@ code {
   text-decoration: none;
   color: inherit;
 }
+input[type="text"] {
+  font: 15px/24px "Lato", Arial, sans-serif;
+  color: #333;
+  width: 100%;
+  box-sizing: border-box;
+  letter-spacing: 1px;
+}
+.col-3 {
+  float: left;
+  width: 27.33%;
+  margin: 40px 3%;
+  position: relative;
+}
 
 .stats {
   letter-spacing: 0.3rem;
@@ -169,26 +182,21 @@ code {
   text-decoration: none;
 }
 
-.search-input {
-  align-items: center;
-  text-align: center;
-  font: inherit;
-  top: 50%;
-}
-
-.search-input h1 {
-  font-size: 1.2rem;
-}
-.search-input input {
-  top: 50%;
-  margin-top: 10px;
-  padding: 7px 16px;
-  text-align: left;
-  text-transform: capitalize;
-}
-
-.search-input input:focus {
+input[type="text"] {
+  width: 100%;
+  border: 2px solid #aaa;
+  border-radius: 4px;
+  margin: 8px 0;
   outline: none;
+  padding: 8px;
+  box-sizing: border-box;
+  transition: 0.3s;
+  border-radius: 15px;
+}
+
+input[type="text"]:focus {
+  border-color: dodgerBlue;
+  box-shadow: 0 0 8px 0 dodgerBlue;
 }
 .btn {
   padding: 10px 20px;
