@@ -224,6 +224,9 @@ input[type="text"]:focus {
     flex-direction: column;
     margin-top: 10px;
   }
+  div.input-effect {
+    width: 150px;
+  }
   .stats {
     font-size: 0.6rem;
   }
@@ -233,5 +236,27 @@ input[type="text"]:focus {
   }
   .nav-logo {
     margin-left: 0;
+  }
+}
+@media only screen and (max-width: 500px) {
+  .single-pokemon {
+    flex-direction: column;
+    margin-top: 2px;
+  }
+  div.input-effect {
+    width: 150px;
+  }
+  .stats {
+    font-size: 0.7rem;
+  }
+  .single-poke-img {
+    height: 5px;
+    width: 5;
+  }
+  .nav-logo {
+    margin-left: 10px;
+  }
+  .footer {
+    font-size: 0.6rem;
   }
 }
